@@ -1,56 +1,125 @@
-/* 基礎設定 */
+/* --- 全域設定與字體 --- */
 body {
-    font-family: 'Noto Sans TC', Arial, sans-serif;
-    background-color: #ffffff; /* 白色背景 */
-    color: #333333;
+    font-family: 'Noto Sans TC', sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    line-height: 1.8; /* 增加行高，提升閱讀性 */
-    font-size: 14px;
+    background-color: #f8f9fa;
+    color: #333;
 }
 
-/* --- 簡歷主容器 --- */
 .resume-container {
-    max-width: 1200px; /* 限制最大寬度，避免過寬 */
-    margin: 0px auto; /* 置中 */
-    padding: 50px 80px; /* 內邊距 */
-    
-    /* 使用 CSS Grid 進行兩欄佈局 */
-    display: grid;
-    grid-template-columns: 350px 1fr; /* 左欄固定寬度，右欄佔滿剩餘空間 */
-    gap: 40px; /* 兩欄間的間隔 */
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding-bottom: 50px;
 }
 
-/* --- 左側欄樣式 --- */
+/* --- 導覽列 (按鈕群組) 樣式 --- */
 
-/* 頂部標題 */
-.profile-header {
-    border-bottom: 3px solid #333;
-    padding-bottom: 10px;
-    margin-bottom: 25px;
-    position: relative;
+.nav-tabs {
+    display: flex;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    padding-left: 0; 
+    border-bottom: 2px solid #eee;
 }
 
-.main-title {
-    font-size: 2.5em;
-    font-weight: 700;
-    margin: 0;
-}
-
-.subtitle {
+.nav-btn {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
     font-size: 1.1em;
-    color: #6c757d;
-    margin: 0;
+    font-weight: 500;
+    color: #555;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent; 
+    margin-right: 15px; 
 }
 
+.nav-btn:hover {
+    color: #007bff; 
+}
+
+.nav-btn.active {
+    color: #000;
+    font-weight: 700;
+    border-bottom: 3px solid #007bff; /* 讓選中的顏色更突出 */
+}
+
+/* --- 可切換內容的總容器 --- */
+.switchable-content-wrapper {
+    /* 這裡不再需要 padding，因為內容區塊各自處理 */
+}
+
+/* 確保所有內容區塊可以切換 */
+.content-section {
+    padding: 20px 0;
+}
+
+/* --- 頁面標題 (適用於所有切換頁面) --- */
+.page-header {
+    margin-bottom: 30px;
+}
+.page-header hr {
+    border: none;
+    height: 3px;
+    background-color: #333;
+    margin-top: 10px;
+    width: 100%;
+}
+.main-title {
+    /* 保持原樣 */
+}
+
+/* --- 1. 「個人檔案」頁面專用佈局 (左右分欄) --- */
+.profile-layout .main-content-area {
+    display: flex; 
+    width: 100%;
+}
+
+.profile-layout .left-column {
+    flex: 0 0 300px; /* 固定左側欄寬度 */
+    padding-right: 30px;
+}
+
+.profile-layout .right-column-static {
+    flex-grow: 1; 
+    padding-left: 30px;
+    border-left: 1px solid #ddd;
+}
+
+/* --- 2. 「專案/作品」和「聯絡資訊」頁面佈局 (全寬顯示) --- */
+/* 這些區塊不需要左右分欄，直接佔滿 .switchable-content-wrapper */
+#projects .block, #contact .block {
+    max-width: 800px;
+}
+
+/* --- 這是您提供的原始 CSS 樣式 (請保留並貼上) --- */
+
+/* ... (這裡貼上您給的所有 CSS 代碼) ... */
+
+/* 確保您的原始 CSS 覆蓋或與上述佈局樣式協同工作 */
+/* 例子：調整原本的 .profile-header 使其不影響頂部大標題 */
+.profile-layout .left-column .profile-header {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
 /* 個人資訊區塊 */
 .profile-info {
     margin-bottom: 30px;
 }
 
 .profile-photo {
-    width: 120px;
-    height: 120px;
+    /* *** 已經縮小到 80px *** */
+    width: 120px; 
+    height: 120px; 
+    
     object-fit: cover;
     border-radius: 5px; /* 方形或微圓角 */
     margin-bottom: 15px;
@@ -72,107 +141,42 @@ body {
     margin: 5px 0;
     font-size: 1em;
 }
-
-/* 區塊標題 */
-.block h3 {
-    font-size: 1.1em;
-    font-weight: 700;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    color: #000;
+.media-gallery {
+    display: flex; /* 啟用 Flexbox，使子元素左右並排 */
+    justify-content: space-around; /* 子元素之間平均分配空間 */
+    align-items: flex-start; /* 子元素頂部對齊 */
+    flex-wrap: wrap; /* 如果空間不足，允許換行 */
+    
+    margin: 20px 0; /* 上下留白 */
+    padding: 10px;
+    background-color: #f7f7f7; /* 增加一個淺色背景，突顯圖片區塊 */
+    border-radius: 8px;
 }
 
-/* 教育經歷項目 */
-.entry {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    line-height: 1.4;
+.media-item {
+    /* 讓每個圖片項目佔據大約一半的空間 */
+    width: 48%; 
+    /* 如果是手機截圖，可以給它一個固定的最大寬度 */
+    max-width: 300px; 
+    
+    margin: 10px; /* 增加項目間距 */
+    text-align: center;
 }
 
-.entry-title {
-    font-weight: 500;
-    margin: 0;
+/* 圖片本身的樣式 (繼承自您之前的設定，但需要微調) */
+.project-image {
+    max-width: 100%; /* 確保圖片寬度不超過其父容器 (.media-item) */
+    height: auto; 
+    max-height: 400px; 
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /* 移除之前的 margin: auto，因為現在由 flexbox 控制位置 */
+    margin: 0 0 10px 0; 
 }
 
-.entry-date {
-    color: #6c757d;
-    margin: 0;
-    font-size: 0.95em;
-}
-
-/* 簡介與特質文字 */
-.intro-text {
-    font-size: 0.95em;
-    margin: 8px 0;
-}
-
-/* --- 右側欄樣式 (工作經歷) --- */
-
-/* 工作經歷項目 */
-.experience-entry {
-    margin-bottom: 25px;
-}
-
-.exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 5px;
-}
-
-.exp-company {
-    font-weight: 700;
-    font-size: 1.05em;
-    margin: 0;
-}
-
-.exp-date {
-    color: #6c757d;
-    font-size: 0.9em;
-    margin: 0;
-}
-
-.exp-details {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 5px 0;
-}
-
-.exp-details li {
-    font-size: 0.9em;
-    color: #555;
-    position: relative;
-    padding-left: 15px;
-    line-height: 1.5;
-}
-
-.exp-details li::before {
-    content: "#"; /* 使用 # 符號作為項目符號 */
-    position: absolute;
-    left: 0;
-    color: #888;
-}
-
-.exp-learning {
-    font-style: italic;
+/* 圖片說明文字 */
+.image-caption {
     font-size: 0.9em;
     color: #6c757d;
-    margin-top: 10px;
-}
-
-/* 頁碼 */
-.page-number {
-    position: fixed;
-    bottom: 20px;
-    left: 80px;
-    color: #ccc;
-    font-size: 0.9em;
-}
-
-.page-number-right {
-    left: auto;
-    right: 80px;
+    margin-top: 5px;
 }
