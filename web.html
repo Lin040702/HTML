@@ -3,88 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>林仡惺 LIN,YI-XIN - 自我介紹</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>林仡惺 LIN,YI-XIN - 互動式履歷</title>
+    <link rel="stylesheet" href="styles.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <main class="resume-container">
         
-        <aside class="left-column">
+        <nav class="nav-tabs">
+            <button class="nav-btn active" onclick="showSection('profile-view')">個人檔案</button>
+            <button class="nav-btn" onclick="showSection('projects')">專案/作品</button>
+            <button class="nav-btn" onclick="showSection('contact')">聯絡資訊</button>
+        </nav>
+        
+        <div class="switchable-content-wrapper">
             
-            <header class="profile-header">
-                <h1 class="main-title">自我介紹</h1>
-            </header>
-
-            <div class="profile-info">
-                <img src="avatar.jpg" alt="林仡惺大頭照" class="profile-photo">
+            <section id="profile-view" class="content-section active-section profile-layout">
                 
-                <h2>林仡惺 <span class="en-name">LIN,YI-XIN</span></h2>
-                <p class="detail-item">住址 / 高雄市楠梓區</p>
-                <p class="detail-item">生日 / 2004.07.02</p>
-            </div>
+                <header class="page-header">
+                    <h1 class="main-title">自我介紹</h1>
+                    <hr>
+                </header>
 
-            <section class="block">
-                <h3>(教育)</h3>
-                <div class="entry">
-                    <p class="entry-title">國立高雄科技大學 / 電子工程系</p>
-                    <p class="entry-date">2022/9-2026/6</p>
-                </div>
-                <div class="entry">
-                    <p class="entry-title">市立高雄高工 / 電機科</p>
-                    <p class="entry-date">2019/9-2022/6</p>
-                </div>
-            </section>
-            
-            <section class="block">
-                <h3>(簡介)</h3>
-                <p class="intro-text">這是我這學期的自我介紹網站。</p>
-                <p class="intro-text">平常喜歡看一些科技類讀物,也喜歡看電影。</p>
-            </section>
-            
-            </aside>
+                <div class="main-content-area"> 
+                    
+                    <aside class="left-column">
+                        <header class="profile-header">
+                            </header>
+                        <div class="profile-info">
+                            <img src="avatar.jpg" alt="林仡惺大頭照" class="profile-photo">
+                            <h2>林仡惺 <span class="en-name">LIN,YI-XIN</span></h2>
+                            <p class="detail-item">住址 / 高雄市楠梓區</p>
+                            <p class="detail-item">生日 / 2004.07.02</p>
+                        </div>
+                        <section class="block">
+                            <h3>(教育)</h3>
+                            <div class="entry">
+                                <p class="entry-title">國立高雄科技大學 / 電子工程系</p>
+                                <p class="entry-date">2022/9-2026/6</p>
+                            </div>
+                            <div class="entry">
+                                <p class="entry-title">市立高雄高工 / 電機科</p>
+                                <p class="entry-date">2019/9-2022/6</p>
+                            </div>
+                        </section>
+                        <section class="block">
+                            <h3>(簡介)</h3>
+                            <p class="intro-text">這是我這學期的自我介紹網站。</p>
+                            <p class="intro-text">平常喜歡看一些科技類讀物,也喜歡看電影。</p>
+                        </section>
+                    </aside>
 
-        <section class="right-column">
-
-            <section class="block">
-                <h3>(工作經歷)</h3>
-                <div class="experience-entry">
-                    <div class="exp-header">
-                        <p class="exp-company">宇震工程行-消防設備師助理</p>
-                        <p class="exp-date">2020/7~2023/8</p>
+                    <div class="right-column-static">
+                        <section class="block">
+                            <h3>(工作經歷)</h3>
+                            <div class="experience-entry">
+                                <div class="exp-header">
+                                    <p class="exp-company">宇震工程行-消防設備師助理</p>
+                                    <p class="exp-date">2020/7~2023/8</p>
+                                </div>
+                                <ul class="exp-details">
+                                    <li>負責工廠內消防設備的配置管線及設備線路連接之輔助工作,以及室內消防箱配置和防火設備檢測</li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="block">
+                            <h3>(專業技能)</h3>
+                            <p class="intro-text">C++</p>
+                            <p class="intro-text">MediBang Paint</p>
+                            <p class="intro-text">Arduino</p>
+                            <p class="intro-text">Matlab</p>
+                        </section>
+                        <section class="block">
+                            <h3>(證照)</h3>
+                            <p class="intro-text">丙級工業配線技術士。</p>
+                        </section>
                     </div>
-                    <ul class="exp-details">
-                        <li>負責工廠內消防設備的配置管線及設備線路連接之輔助工作,以及室內消防箱配置和防火設備檢測</li>
-                    </ul>
                 </div>
             </section>
 
-            <section class="block">
-                <h3>(專業技能)</h3>
-                <p class="intro-text">C++</p>
-                <p class="intro-text">MediBang Paint</p>
-                <p class="intro-text">Arduino</p>
-                <p class="intro-text">Matlab</p>
-            </section>
-
-            <section class="block">
-                <h3>(證照)</h3>
-                <p class="intro-text">丙級工業配線技術士。</p>
-            </section>
-
-             <section class="block">
-                <h3>(聯絡方式)</h3>
-                <p>電子郵件：<a href="mailto:C111252107@nkust.edu.tw">C111252107@nkust.edu.tw</a></p>
-                <p>GitHub：<a href="https://github.com/Lin040702" target="_blank">Lin040702</a></p>
+            <section id="projects" class="content-section" style="display: none;">
+                <h1 class="main-title">專案與作品集</h1>
+                <hr>
+                <div class="block">
+                    <h3>智慧心律血氧紀錄器</h3>
+                    <p class="intro-text">使用 Arduino 實作心率計算以及血氧偵測，並整合MAX30102進行數值監測。</p>
+                    <p class="intro-text">**技術棧:** Arduino UNO, C/C++, 麵包板電路設計</p>
+                    <div class="media-gallery">
+            
+                <div class="media-item">
+                   <img src="H2.jpg" alt="智慧心律介面-測試紀錄" class="project-image">
+                    <p class="image-caption">測試數據記錄介面</p>
+                   </div>
+            
+                   <div class="media-item">
+                       <img src="H1.jpg" alt="智慧心律介面-即時監測" class="project-image">
+                       <p class="image-caption">即時心率與血氧監測</p>
+                   </div>
+                </div>
             </section>
             
-        </section>
+            <section id="contact" class="content-section" style="display: none;">
+                <h1 class="main-title">聯絡資訊</h1>
+                <hr>
+                <div class="block">
+                    <h3>聯絡管道</h3>
+                    <p class="intro-text">電子郵件：<a href="mailto:C111252107@nkust.edu.tw">C111252107@nkust.edu.tw</a> (優先)</p>
+                    <p class="intro-text">GitHub 作品：<a href="https://github.com/Lin040702" target="_blank">Lin040702</a></p>
+                    <p class="intro-text">電話：</p>
+                </div>
+            </section>
 
+        </div>
     </main>
     
-    <div class="page-number">01</div>
-    <div class="page-number page-number-right">02</div>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            const buttons = document.querySelectorAll('.nav-btn');
 
+            sections.forEach(section => {
+                section.style.display = 'none';
+                section.classList.remove('active-section');
+            });
+
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                targetSection.classList.add('active-section');
+            }
+
+            const clickedButton = document.querySelector(`.nav-btn[onclick*="${sectionId}"]`);
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+        }
+
+        // 頁面載入時，預設顯示「個人檔案」
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('profile-view');
+        });
+    </script>
 </body>
 </html>
