@@ -1,0 +1,178 @@
+/* 基礎設定 */
+body {
+    font-family: 'Noto Sans TC', Arial, sans-serif;
+    background-color: #ffffff; /* 白色背景 */
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.8; /* 增加行高，提升閱讀性 */
+    font-size: 14px;
+}
+
+/* --- 簡歷主容器 --- */
+.resume-container {
+    max-width: 1200px; /* 限制最大寬度，避免過寬 */
+    margin: 0px auto; /* 置中 */
+    padding: 50px 80px; /* 內邊距 */
+    
+    /* 使用 CSS Grid 進行兩欄佈局 */
+    display: grid;
+    grid-template-columns: 350px 1fr; /* 左欄固定寬度，右欄佔滿剩餘空間 */
+    gap: 40px; /* 兩欄間的間隔 */
+}
+
+/* --- 左側欄樣式 --- */
+
+/* 頂部標題 */
+.profile-header {
+    border-bottom: 3px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.main-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 1.1em;
+    color: #6c757d;
+    margin: 0;
+}
+
+/* 個人資訊區塊 */
+.profile-info {
+    margin-bottom: 30px;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px; /* 方形或微圓角 */
+    margin-bottom: 15px;
+}
+
+.profile-info h2 {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 0 0 5px 0;
+}
+
+.en-name {
+    font-weight: 300;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+.detail-item {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+/* 區塊標題 */
+.block h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+/* 教育經歷項目 */
+.entry {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.entry-title {
+    font-weight: 500;
+    margin: 0;
+}
+
+.entry-date {
+    color: #6c757d;
+    margin: 0;
+    font-size: 0.95em;
+}
+
+/* 簡介與特質文字 */
+.intro-text {
+    font-size: 0.95em;
+    margin: 8px 0;
+}
+
+/* --- 右側欄樣式 (工作經歷) --- */
+
+/* 工作經歷項目 */
+.experience-entry {
+    margin-bottom: 25px;
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+.exp-company {
+    font-weight: 700;
+    font-size: 1.05em;
+    margin: 0;
+}
+
+.exp-date {
+    color: #6c757d;
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.exp-details {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 5px 0;
+}
+
+.exp-details li {
+    font-size: 0.9em;
+    color: #555;
+    position: relative;
+    padding-left: 15px;
+    line-height: 1.5;
+}
+
+.exp-details li::before {
+    content: "#"; /* 使用 # 符號作為項目符號 */
+    position: absolute;
+    left: 0;
+    color: #888;
+}
+
+.exp-learning {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-top: 10px;
+}
+
+/* 頁碼 */
+.page-number {
+    position: fixed;
+    bottom: 20px;
+    left: 80px;
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+.page-number-right {
+    left: auto;
+    right: 80px;
+}
