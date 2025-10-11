@@ -16,51 +16,58 @@
             min-height: 100vh;
         }
 
-        /* 頂部導覽列容器 */
+        /* 內容容器，用於居中整個區塊 (導覽列 + 簡介框) */
+        .content-wrapper {
+            max-width: 900px;
+            margin: 50px auto; /* 讓整個內容區塊居中並留出上下空間 */
+            padding: 0 20px;
+        }
+
+        /* 頂部導覽列容器 - 位於簡介框上方 */
         .top-nav {
             display: flex;
-            justify-content: flex-start; /* 讓按鈕靠左開始 */
+            justify-content: center; /* 讓按鈕居中 */
             align-items: center;
-            padding: 15px 50px;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 20px 0 20px 0; /* 調整上下邊距，讓按鈕與框框有適當距離 */
+            /* 移除背景色和陰影，使其看起來是獨立於框框的區塊 */
+            background-color: transparent; 
+            box-shadow: none;
         }
 
-        /* 導覽按鈕樣式 */
+        /* 導覽按鈕樣式 - 現在所有按鈕都是藍底白字 */
         .nav-link {
             text-decoration: none;
-            color: #333;
             font-size: 1.1em;
-            font-weight: 500;
-            padding: 8px 15px;
-            margin-right: 10px;
+            font-weight: 700; /* 設定為粗體 */
+            padding: 10px 20px; 
+            margin: 0 10px; 
             border-radius: 6px;
             transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* 突出顯示「履歷」按鈕，作為主要入口 */
-        .nav-link.primary {
-            background-color: #007bff;
-            color: white;
-            font-weight: 700;
-        }
-
-        .nav-link:hover {
-            background-color: #e9ecef;
-            color: #007bff;
+            
+            /* **修改點：將藍色背景應用到所有按鈕** */
+            background-color: #007bff; /* 藍底 */
+            color: white; /* 白字 */
         }
         
-        .nav-link.primary:hover {
-            background-color: #0056b3;
+        /* **刪除原有的 .nav-link.primary 樣式塊，因為已合併到 .nav-link** */
+        
+        /* 懸停樣式調整 - 從藍色變為深藍色 */
+        .nav-link:hover {
+            background-color: #0056b3; /* 懸停時變為深藍色 */
+            color: white; /* 保持白字 */
         }
+        
+        /* **刪除原有的 .nav-link.primary:hover 樣式塊，因為已合併到 .nav-link:hover** */
 
 
-        /* 下方簡介內容區 */
+        /* 簡介內容區 (框框) */
         .intro-content {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 0 20px;
+            padding: 40px; /* 增加內邊距 */
             text-align: center;
+            background-color: white; /* 框框的背景色 */
+            border: 1px solid #dee2e6; /* 邊框 */
+            border-radius: 10px; /* 圓角 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 陰影效果 */
         }
 
         .main-heading {
@@ -80,7 +87,7 @@
             font-size: 1.1em;
             line-height: 1.8;
             max-width: 700px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 0 auto; 
             color: #495057;
         }
         
@@ -88,21 +95,25 @@
 </head>
 <body>
 
-    <nav class="top-nav">
-        <a href="web.html" class="nav-link primary">我的互動履歷</a>
-        <a href="#" class="nav-link">遠端控制</a> 
-        <a href="#" class="nav-link">血壓紀錄</a>
-    </nav>
+    <div class="content-wrapper">
+        
+        <nav class="top-nav">
+            <a href="web.html" class="nav-link primary">自我介紹</a>
+            <a href="#" class="nav-link">遠端控制</a> 
+            <a href="#" class="nav-link">血壓紀錄</a>
+        </nav>
 
-    <main class="intro-content">
-        <h1 class="main-heading">網頁簡介</h1>
-        <p class="sub-heading">國立高雄科技大學 / 電子工程系學生</p>
+        <main class="intro-content">
+            <h1 class="main-heading">網頁簡介</h1>
+            <p class="sub-heading">國立高雄科技大學 / 電子工程系學生</p>
 
-        <p class="summary-text">
-            您好，我是進四子四甲的林仡惺。這是我這學期的自我介紹設計網頁，上方是我的課程內容。
-        </p>
+            <p class="summary-text">
+                您好，我是進四子四甲的林仡惺。這是我這學期的自我介紹設計網頁，上方是我的課程內容。
+            </p>
 
         </main>
+        
+    </div>
     
 </body>
 </html>
