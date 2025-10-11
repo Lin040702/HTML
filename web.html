@@ -4,10 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>林仡惺 LIN,YI-XIN - 互動式履歷</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 新增：回首頁按鈕樣式 */
+        .home-btn {
+            /* 固定在視窗左上角 */
+            position: fixed; 
+            top: 15px;
+            left: 20px;
+            z-index: 1000; /* 確保按鈕在最上層 */
+
+            /* 藍底白字樣式 */
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007bff; /* 藍底 */
+            color: white; /* 白字 */
+            font-size: 1em;
+            font-weight: 700;
+            padding: 8px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .home-btn:hover {
+            background-color: #0056b3; /* 懸停時變深藍色 */
+        }
+    </style>
 </head>
 <body>
+
+    <a class="home-btn" href="homepage.html">回首頁</a>
 
     <main class="resume-container">
         
@@ -91,16 +120,17 @@
                     <p class="intro-text">使用 Arduino 實作心率計算以及血氧偵測，並整合MAX30102進行數值監測。</p>
                     <p class="intro-text">**技術棧:** Arduino UNO, C/C++, 麵包板電路設計</p>
                     <div class="media-gallery">
-            
-                <div class="media-item">
-                   <img src="H2.jpg" alt="智慧心律介面-測試紀錄" class="project-image">
-                    <p class="image-caption">測試數據記錄介面</p>
-                   </div>
-            
-                   <div class="media-item">
-                       <img src="H1.jpg" alt="智慧心律介面-即時監測" class="project-image">
-                       <p class="image-caption">即時心率與血氧監測</p>
-                   </div>
+                
+                        <div class="media-item">
+                            <img src="H2.jpg" alt="智慧心律介面-測試紀錄" class="project-image">
+                            <p class="image-caption">測試數據記錄介面</p>
+                        </div>
+                
+                        <div class="media-item">
+                            <img src="H1.jpg" alt="智慧心律介面-即時監測" class="project-image">
+                            <p class="image-caption">即時心率與血氧監測</p>
+                        </div>
+                    </div>
                 </div>
             </section>
             
@@ -134,7 +164,12 @@
 
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
-                targetSection.style.display = 'block';
+                // 檢查是否為 profile-view，並設置為 grid 佈局
+                if (sectionId === 'profile-view') {
+                    targetSection.style.display = 'grid';
+                } else {
+                    targetSection.style.display = 'block';
+                }
                 targetSection.classList.add('active-section');
             }
 
