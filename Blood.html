@@ -9,16 +9,14 @@
         body { font-family: sans-serif; text-align: center; background: #2c3e50; color: white; padding: 20px; }
         .container { max-width: 1000px; margin: auto; background: #34495e; padding: 20px; border-radius: 15px; }
         
-        /* 標題與按鈕的排版 */
         .header-area { 
             display: flex; 
             align-items: center; 
-            justify-content: space-between; /* 讓內容撐開 */
+            justify-content: space-between; 
             margin-bottom: 20px; 
             position: relative;
         }
 
-        /* 綠底白字回首頁按鈕 */
         .home-btn {
             background-color: #27ae60; 
             color: white; 
@@ -31,7 +29,6 @@
         }
         .home-btn:hover { background-color: #1e8449; }
 
-        /* 右側表格按鈕 */
         .view-btn { 
             background-color: #2980b9; 
             color: white; 
@@ -56,6 +53,19 @@
         .normal { color: #2ecc71; }
         .abnormal { color: #e74c3c; }
 
+        /* 計算細節區塊 */
+        .calc-details {
+            background: #273746;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            border-left: 5px solid #f1c40f;
+        }
+        .calc-details h3 { margin-top: 0; color: #f1c40f; font-size: 1.1em; }
+        .calc-line { font-family: monospace; margin: 8px 0; font-size: 1.05em; }
+        .highlight { color: #3498db; font-weight: bold; }
+
         #debug-view { display: none; }
         #save-status { color: #2ecc71; margin-top: 10px; font-weight: bold; height: 20px; }
     </style>
@@ -65,9 +75,7 @@
 <div class="container">
     <div class="header-area">
         <a href="homepage.html" class="home-btn">🏠 回首頁</a>
-        
         <h2 id="status-title" style="margin: 0;">智慧血壓辨識系統</h2>
-        
         <a href="https://docs.google.com/spreadsheets/d/1u1lHW5aOVmKmtyw84URwpYsyb8_ZjhBBpZ4K_NXLpxs/edit?usp=sharing" target="_blank" class="view-btn">📊 查看雲端表格</a>
     </div>
     
@@ -80,17 +88,24 @@
     
     <div class="result-container">
         <div class="group-res">
-            <div>最高血壓 (Y)</div>
+            <div>最高血壓</div>
             <div id="res-0" class="digit-val">---</div>
         </div>
         <div class="group-res">
-            <div>最低血壓 (X)</div>
+            <div>最低血壓</div>
             <div id="res-1" class="digit-val">---</div>
         </div>
         <div class="group-res status-box">
             <div>迴歸診斷</div>
             <div id="diagnosis-text">---</div>
         </div>
+    </div>
+
+    <div class="calc-details">
+        <h3>📊 迴歸計算詳細過程</h3>
+        <div id="calc-step-1" class="calc-line">等待辨識數據中...</div>
+        <div id="calc-step-2" class="calc-line"></div>
+        <div id="calc-step-3" class="calc-line"></div>
     </div>
 
     <div id="debug-view"><div id="canvas-list"></div></div>
@@ -166,23 +181,39 @@
         saveToExcel(finalResults[0], finalResults[1]);
     }
 
-    function checkBloodPressureRange(yStr, xStr) {
-        const Y = parseFloat(yStr);
-        const X = parseFloat(xStr);
+    function checkBloodPressureRange(sysStr, diaStr) {
+        const sysVal = parseFloat(sysStr); // 收縮壓
+        const diaVal = parseFloat(diaStr); // 舒張壓
         const diagElement = document.getElementById("diagnosis-text");
+        const s1 = document.getElementById("calc-step-1");
+        const s2 = document.getElementById("calc-step-2");
+        const s3 = document.getElementById("calc-step-3");
 
-        if (isNaN(Y) || isNaN(X)) {
+        if (isNaN(sysVal) || isNaN(diaVal)) {
             diagElement.innerText = "等待數據";
             diagElement.className = "";
             return;
         }
 
-        const theoreticalY = (-0.2196 * X) + 142.5;
+        // 迴歸係數
+        const slope = -0.2196;
+        const intercept = 142.5;
         const margin = 3.163849;
-        const upperLimit = theoreticalY + margin;
-        const lowerLimit = theoreticalY - margin;
 
-        if (Y >= lowerLimit && Y <= upperLimit) {
+        // 計算
+        const theoreticalSys = (slope * diaVal) + intercept;
+        const upperLimit = theoreticalSys + margin;
+        const lowerLimit = theoreticalSys - margin;
+
+        // 更新文字描述
+        s1.innerHTML = `1. 依據舒張壓 <span class="highlight">${diaVal}</span> 計算理論收縮壓：<br>公式：(${slope} × ${diaVal}) + ${intercept} = <b>${theoreticalSys.toFixed(4)}</b>`;
+        
+        s2.innerHTML = `2. 誤差容許範圍 (&plusmn;${margin.toFixed(4)})：<br>合格區間：<b>${lowerLimit.toFixed(2)}</b> ~ <b>${upperLimit.toFixed(2)}</b>`;
+        
+        const isNormal = (sysVal >= lowerLimit && sysVal <= upperLimit);
+        s3.innerHTML = `3. 實際辨識收縮壓：<span class="highlight">${sysVal}</span><br>判定結果：<b>${isNormal ? '✅ 在區間內 (正常)' : '❌ 超出區間 (不正常)'}</b>`;
+
+        if (isNormal) {
             diagElement.innerText = "正常";
             diagElement.className = "normal";
         } else {
@@ -209,3 +240,4 @@
 </script>
 </body>
 </html>
+
